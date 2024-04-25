@@ -3,15 +3,13 @@ webroot: app
 services:
   myservice:
     type: python
-    # build:
-    #   - pip3 install -r ./app/requirements.txt
     command:
-      - cd app && uvicorn main:app --port 8888
-    port: 8888
+      - uvicorn app.main:app --port 8881 --host 0.0.0.0 --proxy-headers
+    port: 8881
     ssl: false
 events:
   pre-start:
-    - myservice: pip3 install -r requirements.txt
+    - myservice: pip3 install --no-cache-dir --upgrade -r requirements.txt
 
 proxy:
   myservice:

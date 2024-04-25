@@ -1,0 +1,18 @@
+name: weather-api
+webroot: app
+services:
+  myservice:
+    type: python
+    # build:
+    #   - pip3 install -r ./app/requirements.txt
+    command:
+      - cd app && uvicorn main:app --port 8888
+    port: 8888
+    ssl: false
+events:
+  pre-start:
+    - myservice: pip3 install -r requirements.txt
+
+proxy:
+  myservice:
+    - weather-api.lndo.site

@@ -4,8 +4,8 @@ services:
   myservice:
     type: python
     command:
-      - uvicorn app.main:app --port 8881 --host 0.0.0.0 --proxy-headers
-    port: 8881
+      - uvicorn app.main:app --port 8086 --host 0.0.0.0 --proxy-headers
+    port: 8086
     ssl: false
 events:
   pre-start:
